@@ -1,0 +1,60 @@
+package org.test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Alerts {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\ARAVIND KUMAR M\\eclipse-workspace\\Facebook\\Driver\\chromedriver.exe");
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://demo.automationtesting.in/Alerts.html");
+	    driver.manage().window().maximize();
+	    
+	    WebElement findElement = driver.findElement(By.xpath("//button[@onclick='alertbox()']"));
+        findElement.click();
+        
+        Thread.sleep(2500);
+        driver.switchTo().alert().accept();
+        
+        
+        WebElement okCancel = driver.findElement(By.xpath("//a[text()='Alert with OK & Cancel ']"));
+        okCancel.click();
+        Thread.sleep(3000);
+        WebElement choice = driver.findElement(By.xpath("//button[@onclick='confirmbox()']"));
+        choice.click();
+        
+        Thread.sleep(3000);
+        driver.switchTo().alert().accept();
+        
+        WebElement dd = driver.findElement(By.id("demo"));
+        String dv = dd.getText();
+        System.out.println(dv);
+        
+        WebElement okCanceltxt = driver.findElement(By.xpath("//a[text()='Alert with Textbox ']"));
+        okCanceltxt.click();
+        Thread.sleep(1000);
+        WebElement choice1 = driver.findElement(By.xpath("//button[@onclick='promptbox()']"));
+        choice1.click();
+        Thread.sleep(1000);
+        String text = driver.switchTo().alert().getText();
+        System.out.println(text);
+        Thread.sleep(1000);
+        driver.switchTo().alert().sendKeys("EREN JAEGAR");
+        Thread.sleep(1000);
+        driver.switchTo().alert().accept();
+    
+        Thread.sleep(1000);
+          WebElement txt = driver.findElement(By.id("demo1"));
+        String tt = txt.getText();
+        System.out.println(tt);
+        
+        
+        
+        driver.close();
+        	}
+
+}
